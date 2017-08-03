@@ -1,7 +1,8 @@
 ﻿/*
 Pashto Keyboard
-This script developed to ease typing pashto in web forms where there is no pashto Keyboard installed on a PC.
-Copyright 2002-2011 Walid Mashal
+Version: 1.0
+This Javascript module is developed to ease typing pashto in web forms without the need to change the system language or where
+there is no Pashto Keyboard installed on a PC.
 */
 
 var shift_is_pressed = false;

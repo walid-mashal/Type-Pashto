@@ -2,18 +2,30 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+<link type="text/css" rel="stylesheet" href="style.css"></link>
 <script type="text/javascript" src="TypePashto.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 <title>About</title>
 </head>
 <body lang="EN-US">
-	<h2>type Pashto</h2>
-	<input maxlength="256" placeholder="نوم ولیکۍ" type="text" lang="ps-af">
-	<input maxlength="256" placeholder="نوم ولیکۍ" type="text" lang="ps-af">
-	<input maxlength="256" placeholder="نوم ولیکۍ" type="text" lang="ps-af">
-	<input maxlength="256" placeholder="نوم ولیکۍ" type="text" lang="ps-af">
-	<input maxlength="256" placeholder="نوم ولیکۍ" type="text" lang="ps-af">
+	<div class="container">  
+  <form id="contact" action="" method="post">
+    <h3>Test Type Pashto</h3><br/>
+    <fieldset>
+      <input placeholder="نوم" class="info" lang="ps-af" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="د پلار نوم" class="info" lang="ps-af" type="text" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="پته" class="info" lang="ps-af" type="text" tabindex="3" required>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+</div>
 </body>
 </html>
