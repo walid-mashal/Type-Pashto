@@ -15,3 +15,8 @@ For this module to work perfectly the input element needs to have an attribute o
 
 This module will itself make the input box's text align right to lift so that it is shown properly in the input box.
 
+
+###Demo:
+
+![](https://github.com/walid-netlinks/Type-Pashto/blob/master/pashto_type_final.gif)
+
