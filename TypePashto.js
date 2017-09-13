@@ -1,8 +1,9 @@
 ﻿/*
-Pashto Keyboard
+Auto Type Pashto
 Version: 1.0
 This Javascript module is developed to ease typing pashto in web forms without the need to change the system language or where
-there is no Pashto Keyboard installed on a PC.
+there is no Pashto Keyboard installed on a PC. This module assumes the keyboard structure as that of the built-in Pashto keyboard 
+added to linux, windows and other Operating Systems.
 */
 var shift_is_pressed = false;
 var ctrl_is_pressed = false;
@@ -11,8 +12,12 @@ var pashto_keyboard = {
     // pashto keyboard map based on Afghanistan Official Pashto Keyboard Layout
     pashto_code_and_characters: {
         '104': 'ا',
+        'shift+71': 'أ',
         '102': 'ب',
         'shift+70': 'پ',
+        'shift+72': 'آ',
+        'shift+76': 'ة',
+        'shift+78': 'ډ',
         '106': 'ت',
         'shift+74': 'ټ',
         '101': 'ث',
@@ -21,6 +26,8 @@ var pashto_keyboard = {
         '105': 'ه',
         '111': 'خ',
         'shift+80': 'څ',
+        'shift+90': 'ئ',
+        'shift+86': 'ء',
         'shift+79': 'ځ',
         '93': 'چ',
         '110': 'د',
@@ -28,7 +35,8 @@ var pashto_keyboard = {
         '118': 'ر',
         '99': 'ز',
         'shift+67': 'ژ',
-        'shift+77': 'ړ',
+        '109': 'ړ',
+        'shift+77': 'ؤ',
         '44': 'و',
         '115': 'س',
         '97': 'ش',
@@ -99,6 +107,7 @@ pashto_keyboard.KeyObject = function(input) {
     input.style.direction = "rtl";;
 
     Convert = function(e) {
+        console.log(e);
         if (!ctrl_is_pressed) {
             if (e == null)
                 e = window.event;
