@@ -82,6 +82,13 @@ pashto_keyboard.init = function() {
             new pashto_keyboard.KeyObject(Inputs[i]);
         }
     }
+
+    var textareas = document.getElementsByTagName('TEXTAREA');
+    for (var i = 0; i < textareas.length; i++) {
+        if (textareas[i].lang.toLowerCase() == 'ps-af') {
+            new pashto_keyboard.KeyObject(textareas[i]);
+        }
+    }
 }
 
 pashto_keyboard.key_downed = function(e) {
