@@ -8,10 +8,12 @@ To Use:
 
 	<textarea lang="ps-af"></textarea>
 
+	<div contenteditable="true" lang="ps-af"></div>
+	
 
 and add a reference in your html file to the TypePashto.js
 
-	<script type="text/javascript" src="TypePashto.js"></script>
+	<script type="text/javascript" src="path/to/folder/TypePashto.js"></script>
 
 For this module to work perfectly the input/textarea element needs to have an attribute of lang="ps-af".
 

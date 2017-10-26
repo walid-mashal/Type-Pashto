@@ -82,13 +82,23 @@ pashto_keyboard.init = function() {
             new pashto_keyboard.KeyObject(Inputs[i]);
         }
     }
-
-    var textareas = document.getElementsByTagName('TEXTAREA');
-    for (var i = 0; i < textareas.length; i++) {
-        if (textareas[i].lang.toLowerCase() == 'ps-af') {
-            new pashto_keyboard.KeyObject(textareas[i]);
+    
+        var textareas = document.getElementsByTagName('TEXTAREA');
+        for (var i = 0; i < textareas.length; i++) {
+            if (textareas[i].lang.toLowerCase() == 'ps-af') {
+                new pashto_keyboard.KeyObject(textareas[i]);
+            }
         }
-    }
+        
+        var divs = document.getElementsByTagName('div');
+        for (var i = 0; i < divs.length; i++) {
+            if(divs[i].contentEditable && divs[i].contentEditable == 'true'){
+                console.log('divsssssssssss',divs)
+                if (divs[i].lang.toLowerCase() == 'ps-af') {
+                    new pashto_keyboard.KeyObject(divs[i]);
+                }
+            }
+        }
 }
 
 pashto_keyboard.key_downed = function(e) {
@@ -132,7 +142,12 @@ pashto_keyboard.KeyObject = function(input) {
                 var text = $(eElement).val();
                 text = text.slice(0, eElement.selectionStart) + pashto_char + text.slice(eElement.selectionEnd);
                 var index = eElement.selectionStart;
-                $(eElement).val(text)
+                if(!eElement.isContentEditable){
+                    $(eElement).val(text)
+                }
+                else{
+                    eElement.textContent += text
+                }
                 eElement.selectionStart = eElement.selectionEnd = index + 1;
 
                 if (e.preventDefault)
