@@ -83,22 +83,21 @@ pashto_keyboard.init = function() {
         }
     }
     
-        var textareas = document.getElementsByTagName('TEXTAREA');
-        for (var i = 0; i < textareas.length; i++) {
-            if (textareas[i].lang.toLowerCase() == 'ps-af') {
-                new pashto_keyboard.KeyObject(textareas[i]);
+    var textareas = document.getElementsByTagName('TEXTAREA');
+    for (var i = 0; i < textareas.length; i++) {
+        if (textareas[i].lang.toLowerCase() == 'ps-af') {
+            new pashto_keyboard.KeyObject(textareas[i]);
+        }
+    }
+    
+    var divs = document.getElementsByTagName('div');
+    for (var i = 0; i < divs.length; i++) {
+        if(divs[i].contentEditable && divs[i].contentEditable == 'true'){
+            if (divs[i].lang.toLowerCase() == 'ps-af') {
+                new pashto_keyboard.KeyObject(divs[i]);
             }
         }
-        
-        var divs = document.getElementsByTagName('div');
-        for (var i = 0; i < divs.length; i++) {
-            if(divs[i].contentEditable && divs[i].contentEditable == 'true'){
-                console.log('divsssssssssss',divs)
-                if (divs[i].lang.toLowerCase() == 'ps-af') {
-                    new pashto_keyboard.KeyObject(divs[i]);
-                }
-            }
-        }
+    }
 }
 
 pashto_keyboard.key_downed = function(e) {
@@ -120,11 +119,14 @@ pashto_keyboard.key_up = function(e) {
 pashto_keyboard.KeyObject = function(input) {
     input.pashto = true;
 
-    input.style.textAlign = "right";;
-    input.style.direction = "rtl";;
+    input.style.textAlign = "right";
+    input.style.direction = "rtl";
 
+    if(input.isContentEditable){
+        input.style.float="left"
+        // input.style.textAlign="right"
+    }
     Convert = function(e) {
-        console.log(e);
         if (!ctrl_is_pressed) {
             if (e == null)
                 e = window.event;
@@ -139,16 +141,42 @@ pashto_keyboard.KeyObject = function(input) {
                 pashto_char = pashto_keyboard.pashto_code_and_characters[key_code];
 
             if (pashto_char != undefined) {
-                var text = $(eElement).val();
-                text = text.slice(0, eElement.selectionStart) + pashto_char + text.slice(eElement.selectionEnd);
-                var index = eElement.selectionStart;
                 if(!eElement.isContentEditable){
+                    var text = $(eElement).val();
+                    text = text.slice(0, eElement.selectionStart) + pashto_char + text.slice(eElement.selectionEnd);    
+                    var caretPos = eElement.selectionStart + 1;
                     $(eElement).val(text)
+                    eElement.focus();
+                    eElement.setSelectionRange(caretPos, caretPos);
                 }
                 else{
-                    eElement.textContent += text
+                    text = eElement.textContent;
+                    var selection_anchor_offset = window.getSelection().anchorOffset
+                    var selection_focus_offset = window.getSelection().focusOffset
+                    var ct_caretPos =  selection_anchor_offset + 1;
+
+                    if (window.getSelection().toString() == text)
+                        text = pashto_char
+                    else if(selection_anchor_offset < selection_focus_offset)
+                        text = text.slice(0, selection_anchor_offset) + pashto_char + text.slice(selection_focus_offset)
+                    else
+                        text = text.slice(0,selection_focus_offset) + pashto_char + text.slice(selection_anchor_offset) 
+                        
+                    eElement.textContent = text
+                    var range = document.createRange();
+                    var sel = window.getSelection();
+
+                    if (selection_anchor_offset > selection_focus_offset)
+                        ct_caretPos = selection_focus_offset + 1
+                    else
+                        ct_caretPos = selection_anchor_offset + 1
+
+                    range.setStart(eElement.childNodes[0], ct_caretPos);
+                    range.collapse(true);
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                    eElement.focus();
                 }
-                eElement.selectionStart = eElement.selectionEnd = index + 1;
 
                 if (e.preventDefault)
                     e.preventDefault();
