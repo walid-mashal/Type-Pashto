@@ -22,11 +22,11 @@ This module will itself make the input box's text align right to left so that it
 
 ### Demo:
 
-![](https://github.com/walid-netlinks/Type-Pashto/blob/master/img/pashto_type_final.gif)
+![](https://github.com/walid-mashal/Type-Pashto/blob/master/img/pashto_type_final.gif)
 
 
 ### Keyboard Structure
 
 This module assumes that the keyboard structure of your computer is as of the following image.
 
-![keyboard layout](https://github.com/walid-netlinks/Type-Pashto/blob/master/img/pashto_keyboard.jpg)
+![keyboard layout](https://github.com/walid-mashal/Type-Pashto/blob/master/img/pashto_keyboard.png)
